@@ -3,54 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar</title>
-
+    <title>Registrar - Health365</title>
     <link rel="stylesheet" href="registro.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
-
-    <section class="form-section">
-        <h1>Registrar-se</h1>
-
-        <form id="formRegistro" class="register-form">
-            <input type="text" id="nome" placeholder="Nome completo" required>
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="senha" placeholder="Senha" required>
-            <input type="password" id="confirmar" placeholder="Confirmar senha" required>
-
-            <button type="submit">Registrar</button>
-        </form>
-
-        <p>Já possui conta? <a href="entrar.html">Entrar</a></p>
-    </section>
-
-   
-    <footer class="health-footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>Health365</h3>
-            <p style="color: #bdc3c7; line-height: 1.6;">Sua saúde em primeiro lugar, todos os dias do ano.</p>
-        </div>
-        
-        <div class="footer-section">
-            
-            <ul class="footer-links">
+    <header class="auth-header">
+        <div class="logo">Health365</div>
+        <nav>
+            <ul>
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="servico.html">Serviço</a></li>
                 <li><a href="contato.html">Contato</a></li>
             </ul>
-        </div>
-    </div>
+        </nav>
+    </header>
+
+    <main class="auth-container">
+        <section class="auth-form-section">
+            <h1>Registrar-se</h1>
+            <p class="auth-subtitle">Crie sua conta para começar</p>
+
+            <form id="formRegistro" class="auth-form">
+                <div class="input-group">
+                    <input type="text" id="nome" placeholder="Nome completo" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="senha" placeholder="Senha" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="confirmar" placeholder="Confirmar senha" required>
+                </div>
+
+                <button type="submit" class="auth-button">Registrar</button>
+            </form>
+
+            <p class="auth-link">
+                Já possui conta? <a href="entrar.html">Entrar</a>
+            </p>
+        </section>
+    </main>
+
     
-    <div class="footer-bottom">
-        <p>&copy; 2024 Health365. Todos os direitos reservados.</p>
-    </div>
-</footer>
+    <footer class="health-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Health365</h3>
+                <p style="color: #bdc3c7; line-height: 1.6;">Sua saúde em primeiro lugar, todos os dias do ano.</p>
+            </div>
+            
+            <div class="footer-section">
+                <ul class="footer-links">
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="servico.html">Serviço</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Health365. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
     <script src="registro.js"></script>
- 
-<div id="notificationContainer" class="notification-container"></div>
+    <div id="notificationContainer" class="notification-container"></div>
 </body>
 </html>

@@ -416,7 +416,7 @@ document.getElementById('metricForm').addEventListener('submit', async function(
 async function logout() {
     const { error } = await supabaseClient.auth.signOut();
     if (!error) {
-        window.location.href = 'entrar.html';
+        window.location.href ='index.html';
     }
 }
 

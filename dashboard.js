@@ -60,7 +60,7 @@ async function checkAuth() {
     const { data: { user }, error } = await supabaseClient.auth.getUser();
     
     if (!user || error) {
-        window.location.href = 'entrar.html';
+        window.location.href = 'index.html';
         return;
     }
     

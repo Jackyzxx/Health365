@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Health365</title>
+    <link rel="stylesheet" href="onboarding.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="onboarding-container">
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+
+        <h1 id="onboardingTitle">Complete seu Perfil</h1>
+        <p class="subtitle" id="onboardingSubtitle">Nos conte mais sobre você para personalizarmos sua experiência</p>
+
+        <form id="onboardingForm">
+          
+            <div class="form-step active" id="step1">
+                <div class="form-group">
+                    <label for="nomeCompleto">Nome Completo *</label>
+                    <input type="text" id="nomeCompleto" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dataNascimento">Data de Nascimento *</label>
+                    <input type="date" id="dataNascimento" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="genero">Gênero *</label>
+                    <select id="genero" required>
+                        <option value="">Selecione</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="outro">Outro</option>
+                        <option value="prefiro_nao_dizer">Prefiro não dizer</option>
+                    </select>
+                </div>
+
+                <div class="btn-container">
+                    <div></div>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(2)">Próximo</button>
+                </div>
+            </div>
+
+        
+            <div class="form-step" id="step2">
+                <div class="form-group">
+                    <label for="altura">Altura (cm) *</label>
+                    <input type="number" id="altura" min="100" max="250" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="peso">Peso (kg) *</label>
+                    <input type="number" id="peso" min="30" max="300" step="0.1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="metaSono">Meta de Sono (horas por noite) *</label>
+                    <input type="number" id="metaSono" min="4" max="12" value="8" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="metaAlimentacao">Meta de Alimentação Saudável (%) *</label>
+                    <input type="number" id="metaAlimentacao" min="50" max="100" value="90" required>
+                </div>
+
+                <div class="btn-container">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Voltar</button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(3)">Próximo</button>
+                </div>
+            </div>
+
+           
+            <div class="form-step" id="step3">
+                <div class="form-group">
+                    <label for="tipoSanguineo">Tipo Sanguíneo</label>
+                    <select id="tipoSanguineo">
+                        <option value="">Selecione</option>
+                        <option value="a_plus">A+</option>
+                        <option value="a_minus">A-</option>
+                        <option value="b_plus">B+</option>
+                        <option value="b_minus">B-</option>
+                        <option value="ab_plus">AB+</option>
+                        <option value="ab_minus">AB-</option>
+                        <option value="o_plus">O+</option>
+                        <option value="o_minus">O-</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="metaSocial">Meta de Vida Social (encontros por semana)</label>
+                    <input type="number" id="metaSocial" min="0" max="10" value="3">
+                </div>
+
+                <div class="form-group">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" id="cidade" placeholder="Onde você mora?">
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">Biografia</label>
+                    <textarea id="bio" rows="3" placeholder="Conte um pouco sobre você..."></textarea>
+                </div>
+
+                <div class="btn-container">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Voltar</button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Completar Perfil</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="photo-section">
+            <h3>Foto de Perfil</h3>
+            <div class="photo-upload-area" onclick="document.getElementById('fotoInput').click()">
+                <img id="photoPreview" class="photo-preview" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&h=150&fit=crop&crop=face" alt="Preview">
+                <div class="photo-upload-text">
+                    <p>📷 Clique para alterar foto</p>
+                    <small>Formatos: JPG, PNG (max. 5MB)</small>
+                </div>
+            </div>
+            <input type="file" id="fotoInput" accept="image/*" style="display: none;">
+        </div>
+    </div>
+
+    <script src="onboarding.js"></script>
+    <footer class="health-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Health365</h3>
+        </div>
+        
+        <div class="footer-section">
+            <ul class="footer-links">
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="servico.html">Serviço</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2024 Health365. Todos os direitos reservados.</p>
+    </div>
+</footer>
+   
+<div id="notificationContainer" class="notification-container"></div>
+</body>
+</html>

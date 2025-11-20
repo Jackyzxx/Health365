@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Perfil - Health365</title>
+  <link rel="stylesheet" href="perfil.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header class="topo">
+    <div class="logo">Health365</div>
+    <nav class="nav-menu">
+            <a href="relatoros.html" class="nav-link">📈Ver Relatórios</a>
+            <a href="dashboard.html" class="nav-link">🏠 Inicio</a>
+            <a href="perfil.html" class="nav-link active ">👤 Perfil</a>
+            <a href="historico.html" class="nav-link">📊 Histórico</a>
+    </nav>
+  </header>
+
+  <main class="conteudo">
+    <div class="perfil-container">
+    
+      <section class="perfil-header">
+        <div class="foto-section">
+          <div class="foto-container">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&h=150&fit=crop&crop=face" 
+                 alt="Foto do usuário" class="foto-perfil" id="fotoPerfil">
+            <div class="foto-overlay">
+              <button class="trocar-foto" onclick="document.getElementById('fotoInput').click()">
+                <i>📷</i> Alterar
+              </button>
+            </div>
+          </div>
+          <input type="file" id="fotoInput" accept="image/*" style="display: none;">
+        </div>
+
+        <div class="info-pessoal">
+          <h1 id="nomeUsuario">Carregando...</h1>
+          <p class="email" id="emailUsuario">carregando@email.com</p>
+          <p class="bio" id="bioUsuario">Sua biografia aparecerá aqui...</p>
+          <div class="stats-rapidas">
+            <div class="stat-rapida">
+              <span class="stat-valor" id="idadeStat">--</span>
+              <span class="stat-label">Idade</span>
+            </div>
+            <div class="stat-rapida">
+              <span class="stat-valor" id="alturaStat">--</span>
+              <span class="stat-label">Altura</span>
+            </div>
+            <div class="stat-rapida">
+              <span class="stat-valor" id="pesoStat">--</span>
+              <span class="stat-label">Peso</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+      <section class="metricas-section">
+        <h2>📊 Suas Métricas</h2>
+        <div class="metricas-grid">
+          <div class="metrica-card">
+            <div class="metrica-icon">🛌</div>
+            <div class="metrica-info">
+              <h3>Meta de Sono</h3>
+              <p class="metrica-valor" id="metaSono">8h / noite</p>
+            </div>
+          </div>
+
+          <div class="metrica-card">
+            <div class="metrica-icon">🥗</div>
+            <div class="metrica-info">
+              <h3>Alimentação</h3>
+              <p class="metrica-valor" id="metaAlimentacao">90% saudável</p>
+            </div>
+          </div>
+
+          <div class="metrica-card">
+            <div class="metrica-icon">💪</div>
+            <div class="metrica-info">
+              <h3>IMC</h3>
+              <p class="metrica-valor" id="imcValor">--</p>
+            </div>
+          </div>
+
+          <div class="metrica-card">
+            <div class="metrica-icon">🩸</div>
+            <div class="metrica-info">
+              <h3>Tipo Sanguíneo</h3>
+              <p class="metrica-valor" id="tipoSanguineo">--</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    
+      <section class="detalhes-section">
+        <div class="detalhes-coluna">
+          <h3>👤 Informações Pessoais</h3>
+          <div class="info-item">
+            <span class="info-label">Nome Completo:</span>
+            <span class="info-valor" id="infoNome">--</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Data de Nascimento:</span>
+            <span class="info-valor" id="infoNascimento">--</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Gênero:</span>
+            <span class="info-valor" id="infoGenero">--</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Cidade:</span>
+            <span class="info-valor" id="infoCidade">--</span>
+          </div>
+        </div>
+
+        <div class="detalhes-coluna">
+          <h3>🎯 Metas e Objetivos</h3>
+          <div class="info-item">
+            <span class="info-label">Horas de Sono:</span>
+            <span class="info-valor" id="infoSono">8h / noite</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Alimentação Saudável:</span>
+            <span class="info-valor" id="infoAlimentacao">90%</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Vida Social:</span>
+            <span class="info-valor" id="infoSocial">3 encontros/semana</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Perfil Completo:</span>
+            <span class="info-valor status-completo" id="infoCompleto">✅ Sim</span>
+          </div>
+        </div>
+      </section>
+
+<section class="metricas-hoje-section">
+    <h2>📅 Hoje</h2>
+    <div class="metricas-hoje-grid">
+        <div class="metrica-hoje-card">
+            <div class="metrica-hoje-icon">🛌</div>
+            <div class="metrica-hoje-info">
+                <h3>Sono</h3>
+                <p class="metrica-hoje-valor" id="sonoHoje">7h</p>
+            </div>
+        </div>
+
+        <div class="metrica-hoje-card">
+            <div class="metrica-hoje-icon">🥗</div>
+            <div class="metrica-hoje-info">
+                <h3>Alimentação</h3>
+                <p class="metrica-hoje-valor" id="alimentacaoHoje">3/4 refeições</p>
+            </div>
+        </div>
+
+        <div class="metrica-hoje-card">
+            <div class="metrica-hoje-icon">💪</div>
+            <div class="metrica-hoje-info">
+                <h3>Exercício</h3>
+                <p class="metrica-hoje-valor" id="exercicioHoje">30min</p>
+            </div>
+        </div>
+
+        <div class="metrica-hoje-card">
+            <div class="metrica-hoje-icon">👥</div>
+            <div class="metrica-hoje-info">
+                <h3>Social</h3>
+                <p class="metrica-hoje-valor" id="socialHoje">2 encontros</p>
+            </div>
+        </div>
+    </div>
+</section>
+     
+      <section class="acoes-section">
+        <button class="btn-editar" onclick="window.location.href='onboarding.html'">
+          <i>✏️</i> Editar Perfil
+        </button>
+     
+         
+        </button>
+      </section>
+    </div>
+  </main>
+
+  <footer class="health-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Health365</h3>
+        </div>
+        
+        <div class="footer-section">
+            <ul class="footer-links">
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="servico.html">Serviço</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2024 Health365. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+  <script src="perfil.js"></script>
+
+<div id="notificationContainer" class="notification-container"></div>
+</body>
+</html> 

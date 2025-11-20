@@ -1,0 +1,461 @@
+:root {
+    --verde-primario: #2ecc71;
+    --verde-escuro: #27ae60;
+    --branco: #ffffff;
+    --cinza-claro: #f8f9fa;
+    --cinza-medio: #e9ecef;
+    --cinza-escuro: #6c757d;
+    --texto-escuro: #2c3e50;
+    --sombra: 0 8px 30px rgba(0,0,0,0.08);
+    --borda-radius: 16px;
+    --transicao: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
+    min-height: 100vh;
+    color: var(--texto-escuro);
+}
+
+
+.historico-header {
+    background: var(--verde-primario);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 20px rgba(46, 204, 113, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transicao);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.nav-link:hover, .nav-link.active {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.logout-btn {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+.logout-btn:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+}
+
+
+.historico-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+
+.historico-header-section {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.historico-header-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--texto-escuro);
+}
+
+.historico-header-section p {
+    color: var(--cinza-escuro);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.filtros select {
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--cinza-medio);
+    border-radius: 10px;
+    background: var(--branco);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+.filtros select:focus {
+    outline: none;
+    border-color: var(--verde-primario);
+}
+
+.estatisticas-section {
+    margin-bottom: 3rem;
+}
+
+.estatisticas-section h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--texto-escuro);
+}
+
+.estatisticas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.estatistica-card {
+    background: var(--branco);
+    padding: 1.5rem;
+    border-radius: var(--borda-radius);
+    box-shadow: var(--sombra);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: var(--transicao);
+}
+
+.estatistica-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.estatistica-icon {
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    background: var(--verde-primario);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.estatistica-info h3 {
+    margin-bottom: 0.5rem;
+    color: var(--texto-escuro);
+    font-size: 1.1rem;
+}
+
+.estatistica-valor {
+    color: var(--verde-primario);
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+}
+
+.estatistica-desc {
+    color: var(--cinza-escuro);
+    font-size: 0.9rem;
+}
+
+
+.tabela-section {
+    margin-bottom: 3rem;
+}
+
+.tabela-section h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--texto-escuro);
+}
+
+.tabela-container {
+    background: var(--branco);
+    border-radius: var(--borda-radius);
+    box-shadow: var(--sombra);
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: var(--verde-primario);
+    color: white;
+}
+
+th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--cinza-medio);
+    transition: var(--transicao);
+}
+
+tbody tr:hover {
+    background: var(--cinza-claro);
+}
+
+td {
+    padding: 1rem;
+    color: var(--texto-escuro);
+}
+
+.carregando {
+    text-align: center;
+    color: var(--cinza-escuro);
+    font-style: italic;
+    padding: 2rem;
+}
+
+.sem-dados {
+    text-align: center;
+    color: var(--cinza-escuro);
+    padding: 3rem;
+    font-style: italic;
+}
+
+.dia-destaque {
+    background: #f0f9ff !important;
+    border-left: 4px solid var(--verde-primario);
+}
+
+.insights-section {
+    margin-bottom: 2rem;
+}
+
+.insights-section h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--texto-escuro);
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.insight-card {
+    background: var(--branco);
+    padding: 1.5rem;
+    border-radius: var(--borda-radius);
+    box-shadow: var(--sombra);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: var(--transicao);
+}
+
+.insight-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.insight-icon {
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    background: var(--verde-primario);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.insight-content h3 {
+    margin-bottom: 0.5rem;
+    color: var(--texto-escuro);
+    font-size: 1.1rem;
+}
+
+.insight-content p {
+    color: var(--cinza-escuro);
+    line-height: 1.5;
+}
+
+
+.historico-footer {
+    background: var(--verde-primario);
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+    .historico-header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .nav-menu {
+        gap: 1rem;
+    }
+
+    .historico-main {
+        padding: 1rem;
+    }
+
+    .filtros {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .estatisticas-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    th, td {
+        padding: 0.75rem 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .estatistica-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .insight-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+.health-footer {
+    background: #ffffff;
+    color: #2d3748;
+    padding: 20px 0 10px;
+    margin-top: 40px;
+    border-top: 1px solid #e2e8f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.8em;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-section h3 {
+    color: #22c55e;
+    margin: 0;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 25px;
+}
+
+.footer-links li {
+    margin: 0;
+}
+
+.footer-links a {
+    color: #22c55e;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.footer-links a:hover {
+    color: #16a34a;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 15px auto 0;
+    padding: 10px 20px 0;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+    color: #64748b;
+    font-size: 1em;
+}
+
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .footer-links {
+        gap: 20px;
+    }
+    
+    .health-footer {
+        padding: 15px 0 8px;
+    }
+}

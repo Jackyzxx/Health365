@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Health365</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+</head>
+
+<body>
+    
+<link rel="stylesheet" href="notifications.css">
+<div id="notificationContainer" class="notification-container"></div>
+<script src="notifications.js"></script>
+    <header class="dashboard-header">
+        <div class="logo">Health365</div>
+        <nav class="nav-menu">
+             <a href="relatoros.html" class="nav-link">📈Ver Relatórios</a>
+            <a href="dashboard.html" class="nav-link active">🏠 Dashboard</a>
+            <a href="perfil.html" class="nav-link">👤 Perfil</a>
+            <a href="historico.html" class="nav-link">📊 Histórico</a>
+        </nav>
+        <div class="user-section">
+            <img src="" alt="Avatar" class="user-avatar" id="userAvatar">
+            <span class="user-name" id="userName">Usuário</span>
+            <button class="logout-btn" onclick="logout()">🚪 Sair</button>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+       
+        <section class="welcome-banner">
+            <div class="welcome-content">
+                <h1 id="welcomeMessage">Bem-vindo de volta!</h1>
+                <p id="dailyTip">Dica do dia: Beba bastante água! 💧</p>
+            </div>
+            <div class="date-display">
+                <span id="currentDate">Carregando...</span>
+            </div>
+        </section>
+
+     
+        <section class="metrics-section">
+            <h2>📊 Suas Métricas de Hoje</h2>
+            <div class="metrics-grid">
+              
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-icon">🛌</span>
+                        <h3>Qualidade do Sono</h3>
+                    </div>
+                    <div class="metric-value" id="sleepMetric">7.5h</div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="sleepProgress" style="width: 85%"></div>
+                        </div>
+                        <span class="progress-text" id="sleepText">85% da meta</span>
+                    </div>
+                    <button class="update-btn" data-metric="sono">Atualizar</button>
+                </div>
+
+              
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-icon">🥗</span>
+                        <h3>Alimentação Saudável</h3>
+                    </div>
+                    <div class="metric-value" id="foodMetric">75%</div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="foodProgress" style="width: 75%"></div>
+                        </div>
+                        <span class="progress-text" id="foodText">3/4 refeições</span>
+                    </div>
+                    <button class="update-btn" data-metric="alimentacao">Atualizar</button>
+                </div>
+
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-icon">💪</span>
+                        <h3>Atividade Física</h3>
+                    </div>
+                    <div class="metric-value" id="exerciseMetric">45min</div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="exerciseProgress" style="width: 75%"></div>
+                        </div>
+                        <span class="progress-text" id="exerciseText">75% da meta</span>
+                    </div>
+                    <button class="update-btn" data-metric="exercicio">Atualizar</button>
+                </div>
+
+                
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-icon">👥</span>
+                        <h3>Vida Social</h3>
+                    </div>
+                    <div class="metric-value" id="socialMetric">2/3</div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="socialProgress" style="width: 67%"></div>
+                        </div>
+                        <span class="progress-text" id="socialText">2 encontros esta semana</span>
+                    </div>
+                    <button class="update-btn" data-metric="social">Atualizar</button>
+                </div>
+            </div>
+        </section>
+
+       
+        <section class="actions-section">
+            <h2>🚀 Ações Rápidas</h2>
+            <div class="actions-grid">
+                <button class="action-btn" data-action="perfil">
+                    <span class="action-icon">👤</span>
+                    <span class="action-text">Ver Perfil Completo</span>
+                </button>
+                <button class="action-btn" data-action="historico">
+                    <span class="action-icon">📊</span>
+                    <span class="action-text">Ver Histórico</span>
+                </button>
+                
+            </div>
+        </section>
+
+        
+        <section class="weekly-section">
+            <h2>📈 Resumo da Semana</h2>
+            <div class="weekly-stats">
+                <div class="weekly-card">
+                    <h4>Média de Sono</h4>
+                    <div class="weekly-value" id="weeklySleep">7.2h</div>
+                    <div class="weekly-trend stable">→ estável</div>
+                </div>
+                <div class="weekly-card">
+                    <h4>Alimentação</h4>
+                    <div class="weekly-value" id="weeklyFood">78%</div>
+                    <div class="weekly-trend stable">→ estável</div>
+                </div>
+                <div class="weekly-card">
+                    <h4>Atividade</h4>
+                    <div class="weekly-value" id="weeklyExercise">40min</div>
+                    <div class="weekly-trend stable">→ estável</div>
+                </div>
+                <div class="weekly-card">
+                    <h4>Social</h4>
+                    <div class="weekly-value" id="weeklySocial">65%</div>
+                    <div class="weekly-trend stable">→ estável</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+  
+    <div id="metricModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle">Atualizar Métrica</h3>
+            <form id="metricForm">
+                <div class="form-group">
+                    <label id="metricLabel">Valor:</label>
+                    <input type="number" id="metricValue" step="0.1" min="0" required>
+                    <span id="metricUnit">horas</span>
+                </div>
+                <div class="form-group" id="qualityGroup" style="display: none;">
+                    <label>Qualidade (1-5):</label>
+                    <input type="number" id="metricQuality" min="1" max="5" value="4">
+                </div>
+                <button type="submit" class="submit-btn">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+   <footer class="health-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Health365</h3>
+        </div>
+        
+        <div class="footer-section">
+            <ul class="footer-links">
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="servico.html">Serviço</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2024 Health365. Todos os direitos reservados.</p>
+    </div>
+</footer>
+    <script src="dashboard.js"></script>
+ 
+<div id="notificationContainer" class="notification-container"></div>
+</body>
+</html>

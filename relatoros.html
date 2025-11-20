@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios - Health365</title>
+    <link rel="stylesheet" href="relatorios.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="relatorios-header">
+        <div class="logo">Health365</div>
+        <nav class="nav-menu">
+            <a href="dashboard.html" class="nav-link">🏠 Inicio</a>
+            <a href="perfil.html" class="nav-link">👤 Perfil</a>
+            <a href="historico.html" class="nav-link">📊 Histórico</a>
+            <a href="relatorios.html" class="nav-link active">📈 Relatórios</a>
+        </nav>
+        <div class="user-section">
+            <img src="" alt="Avatar" class="user-avatar" id="userAvatar">
+            <button class="logout-btn" onclick="logout()">🚪 Sair</button>
+        </div>
+    </header>
+
+    <main class="relatorios-main">
+        <section class="relatorios-header-section">
+            <h1>📈 Relatórios Detalhados</h1>
+            <p>Análises profundas do seu progresso e tendências</p>
+            
+            <div class="filtros-relatorios">
+                <div class="filtro-group">
+                    <label for="filtroPeriodo">Período:</label>
+                    <select id="filtroPeriodo" onchange="carregarRelatorios()">
+                        <option value="7">Última Semana</option>
+                        <option value="30" selected>Último Mês</option>
+                        <option value="90">Últimos 3 Meses</option>
+                        <option value="180">Últimos 6 Meses</option>
+                    </select>
+                </div>
+                
+                <div class="filtro-group">
+                    <label for="filtroMetrica">Métrica:</label>
+                    <select id="filtroMetrica" onchange="atualizarGraficos()">
+                        <option value="todas">Todas as Métricas</option>
+                        <option value="sono">Sono</option>
+                        <option value="alimentacao">Alimentação</option>
+                        <option value="exercicio">Exercício</option>
+                        <option value="social">Vida Social</option>
+                    </select>
+                </div>
+                
+                <button class="btn-exportar" onclick="exportarRelatorio()">
+                    📥 Exportar Relatório
+                </button>
+            </div>
+        </section>
+
+        
+        <section class="resumo-executivo">
+            <h2>🎯 Resumo Executivo</h2>
+            <div class="resumo-grid">
+                <div class="resumo-card">
+                    <div class="resumo-icon">📅</div>
+                    <div class="resumo-content">
+                        <h3>Período Analisado</h3>
+                        <p id="periodoAnalisado">--</p>
+                    </div>
+                </div>
+                
+                <div class="resumo-card">
+                    <div class="resumo-icon">📊</div>
+                    <div class="resumo-content">
+                        <h3>Total de Registros</h3>
+                        <p id="totalRegistros">--</p>
+                    </div>
+                </div>
+                
+                <div class="resumo-card">
+                    <div class="resumo-icon">⭐</div>
+                    <div class="resumo-content">
+                        <h3>Dias com Melhor Desempenho</h3>
+                        <p id="melhoresDias">--</p>
+                    </div>
+                </div>
+                
+                <div class="resumo-card">
+                    <div class="resumo-icon">📈</div>
+                    <div class="resumo-content">
+                        <h3>Tendência Geral</h3>
+                        <p id="tendenciaGeral">--</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="graficos-section">
+            <div class="grafico-full">
+                <h3>📊 Evolução de Todas as Métricas</h3>
+                <canvas id="graficoCompleto"></canvas>
+            </div>
+            
+            <div class="graficos-grid">
+                <div class="grafico-container">
+                    <h4>🛌 Evolução do Sono</h4>
+                    <canvas id="graficoSono"></canvas>
+                    <div class="grafico-stats">
+                        <span>Média: <strong id="mediaSono">--</strong></span>
+                        <span>Melhor: <strong id="melhorSono">--</strong></span>
+                    </div>
+                </div>
+                
+                <div class="grafico-container">
+                    <h4>🥗 Evolução da Alimentação</h4>
+                    <canvas id="graficoAlimentacao"></canvas>
+                    <div class="grafico-stats">
+                        <span>Média: <strong id="mediaAlimentacao">--</strong></span>
+                        <span>Melhor: <strong id="melhorAlimentacao">--</strong></span>
+                    </div>
+                </div>
+                
+                <div class="grafico-container">
+                    <h4>💪 Evolução do Exercício</h4>
+                    <canvas id="graficoExercicio"></canvas>
+                    <div class="grafico-stats">
+                        <span>Média: <strong id="mediaExercicio">--</strong></span>
+                        <span>Melhor: <strong id="melhorExercicio">--</strong></span>
+                    </div>
+                </div>
+                
+                <div class="grafico-container">
+                    <h4>👥 Evolução da Vida Social</h4>
+                    <canvas id="graficoSocial"></canvas>
+                    <div class="grafico-stats">
+                        <span>Média: <strong id="mediaSocial">--</strong></span>
+                        <span>Melhor: <strong id="melhorSocial">--</strong></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="analises-section">
+            <h2>🔍 Análises Detalhadas</h2>
+            
+            <div class="analises-grid">
+                <div class="analise-card">
+                    <h3>📅 Frequência de Registros</h3>
+                    <div class="analise-content">
+                        <p id="frequenciaRegistros">Calculando...</p>
+                        <div class="progress-analise">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFrequencia"></div>
+                            </div>
+                            <span id="percentualFrequencia">--%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analise-card">
+                    <h3>🎯 Consistência nas Metas</h3>
+                    <div class="analise-content">
+                        <p id="consistenciaMetas">Calculando...</p>
+                        <div class="progress-analise">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressConsistencia"></div>
+                            </div>
+                            <span id="percentualConsistencia">--%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analise-card">
+                    <h3>📈 Progresso ao Longo do Tempo</h3>
+                    <div class="analise-content">
+                        <p id="progressoTempo">Calculando...</p>
+                        <div class="trend-indicator" id="indicadorProgresso">
+                            <span class="trend-arrow">→</span>
+                            <span class="trend-text">Estável</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analise-card">
+                    <h3>🔄 Padrões Identificados</h3>
+                    <div class="analise-content">
+                        <p id="padroesIdentificados">Analisando seus dados...</p>
+                        <div class="padroes-list" id="listaPadroes">
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recomendacoes-section">
+            <h2>💡 Recomendações Personalizadas</h2>
+            <div class="recomendacoes-grid" id="recomendacoesContainer">
+                <div class="recomendacao-card">
+                    <div class="recomendacao-icon">🎯</div>
+                    <div class="recomendacao-content">
+                        <h3>Meta do Sono</h3>
+                        <p id="recomendacaoSono">Analisando seus padrões de sono...</p>
+                    </div>
+                </div>
+                
+                <div class="recomendacao-card">
+                    <div class="recomendacao-icon">🥗</div>
+                    <div class="recomendacao-content">
+                        <h3>Alimentação</h3>
+                        <p id="recomendacaoAlimentacao">Analisando seus hábitos alimentares...</p>
+                    </div>
+                </div>
+                
+                <div class="recomendacao-card">
+                    <div class="recomendacao-icon">💪</div>
+                    <div class="recomendacao-content">
+                        <h3>Exercício Físico</h3>
+                        <p id="recomendacaoExercicio">Analisando sua atividade física...</p>
+                    </div>
+                </div>
+                
+                <div class="recomendacao-card">
+                    <div class="recomendacao-icon">👥</div>
+                    <div class="recomendacao-content">
+                        <h3>Vida Social</h3>
+                        <p id="recomendacaoSocial">Analisando suas interações sociais...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="comparativo-section">
+            <h2>📅 Comparativo Semanal</h2>
+            <div class="comparativo-container">
+                <canvas id="graficoComparativo"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <footer class="health-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Health365</h3>
+            <p style="color: #bdc3c7; line-height: 1.6;">Sua saúde em primeiro lugar, todos os dias do ano.</p>
+        </div>
+        
+        <div class="footer-section">
+          
+            <ul class="footer-links">
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="servico.html">Serviço</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2024 Health365. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+    
+    <link rel="stylesheet" href="notifications.css">
+    <div id="notificationContainer" class="notification-container"></div>
+    
+    <script src="notifications.js"></script>
+    <script src="relatorios.js"></script>
+</body>
+</html>

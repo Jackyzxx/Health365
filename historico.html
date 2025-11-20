@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico - Health365</title>
+    <link rel="stylesheet" href="historico.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="historico-header">
+        <div class="logo">Health365</div>
+        <nav class="nav-menu">
+            <a href="relatoros.html" class="nav-link">📈Ver Relatórios</a>
+            <a href="dashboard.html" class="nav-link">🏠 Inicio</a>
+            <a href="perfil.html" class="nav-link">👤 Perfil</a>
+            <a href="historico.html" class="nav-link active">📊 Histórico</a>
+        </nav>
+        <div class="user-section">
+            <img src="" alt="Avatar" class="user-avatar" id="userAvatar">
+            <button class="logout-btn" onclick="logout()">🚪 Sair</button>
+        </div>
+    </header>
+
+    <main class="historico-main">
+        <section class="historico-header-section">
+            <h1>📊 Seu Histórico de Saúde</h1>
+            <p>Analise seu progresso ao longo do tempo</p>
+            
+            <div class="filtros">
+                <select id="filtroPeriodo" onchange="carregarHistorico()">
+                    <option value="7">Últimos 7 dias</option>
+                    <option value="14">Últimas 2 semanas</option>
+                    <option value="30">Últimos 30 dias</option>
+                </select>
+            </div>
+        </section>
+
+  
+        <section class="estatisticas-section">
+            <h2>📈 Estatísticas do Período</h2>
+            <div class="estatisticas-grid">
+                <div class="estatistica-card">
+                    <div class="estatistica-icon">🛌</div>
+                    <div class="estatistica-info">
+                        <h3>Média de Sono</h3>
+                        <p class="estatistica-valor" id="mediaSono">--</p>
+                        <p class="estatistica-desc">horas por noite</p>
+                    </div>
+                </div>
+                
+                <div class="estatistica-card">
+                    <div class="estatistica-icon">🥗</div>
+                    <div class="estatistica-info">
+                        <h3>Alimentação</h3>
+                        <p class="estatistica-valor" id="mediaAlimentacao">--</p>
+                        <p class="estatistica-desc">% saudável</p>
+                    </div>
+                </div>
+                
+                <div class="estatistica-card">
+                    <div class="estatistica-icon">💪</div>
+                    <div class="estatistica-info">
+                        <h3>Exercício</h3>
+                        <p class="estatistica-valor" id="mediaExercicio">--</p>
+                        <p class="estatistica-desc">minutos/dia</p>
+                    </div>
+                </div>
+                
+                <div class="estatistica-card">
+                    <div class="estatistica-icon">👥</div>
+                    <div class="estatistica-info">
+                        <h3>Social</h3>
+                        <p class="estatistica-valor" id="mediaSocial">--</p>
+                        <p class="estatistica-desc">interações/semana</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+     
+        <section class="tabela-section">
+            <h2>📋 Registros Diários</h2>
+            <div class="tabela-container">
+                <table id="tabelaHistorico">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>🛌 Sono</th>
+                            <th>🥗 Alimentação</th>
+                            <th>💪 Exercício</th>
+                            <th>👥 Social</th>
+                            <th>⭐ Qualidade</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaCorpo">
+                        <tr>
+                            <td colspan="6" class="carregando">Carregando histórico...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="insights-section">
+            <h2>💡 Insights do Seu Histórico</h2>
+            <div class="insights-grid" id="insightsContainer">
+                <div class="insight-card">
+                    <div class="insight-icon">📅</div>
+                    <div class="insight-content">
+                        <h3>Seus Melhores Dias</h3>
+                        <p id="insightMelhoresDias">Analisando seus dados...</p>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">📈</div>
+                    <div class="insight-content">
+                        <h3>Tendências</h3>
+                        <p id="insightTendencias">Calculando padrões...</p>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">🎯</div>
+                    <div class="insight-content">
+                        <h3>Recomendações</h3>
+                        <p id="insightRecomendacoes">Gerando sugestões...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   <footer class="health-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Health365</h3>
+        </div>
+        
+        <div class="footer-section">
+            <ul class="footer-links">
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="servico.html">Serviço</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2024 Health365. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+    <script src="historico.js"></script>
+    
+<div id="notificationContainer" class="notification-container"></div>
+</body>
+</html>

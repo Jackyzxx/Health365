@@ -69,7 +69,7 @@ form.addEventListener("submit", async (e) => {
             alert("Conta criada com sucesso! Verifique seu email para confirmar.");
         }
 
-        window.location.href = "entrar.html";
+        window.location.href = "index.html";
 
     } catch (error) {
         console.error('Erro completo:', error);

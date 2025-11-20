@@ -6,14 +6,13 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #a3d977 0%, #2ecc71 100%);
     color: #333;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-/* Header igual ao da página de entrada */
 .auth-header {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -47,7 +46,7 @@ body {
     color: #22c55e;
 }
 
-/* Container principal */
+
 .auth-container {
     flex: 1;
     display: flex;
@@ -56,7 +55,7 @@ body {
     padding: 40px 20px;
 }
 
-/* Seção do formulário */
+
 .auth-form-section {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(15px);
@@ -81,7 +80,6 @@ body {
     font-size: 16px;
 }
 
-/* Formulário */
 .auth-form {
     display: flex;
     flex-direction: column;
@@ -126,7 +124,6 @@ body {
     box-shadow: 0 5px 15px rgba(34, 197, 94, 0.4);
 }
 
-/* Link de navegação */
 .auth-link {
     margin-top: 25px;
     color: #718096;
@@ -143,7 +140,7 @@ body {
     text-decoration: underline;
 }
 
-/* Footer (mantido igual) */
+
 .health-footer {
     background: #ffffff;
     color: #2d3748;
